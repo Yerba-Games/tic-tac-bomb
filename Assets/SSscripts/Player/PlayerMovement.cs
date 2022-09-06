@@ -64,9 +64,11 @@ public class PlayerMovement : MonoBehaviour
     } 
     private void DoJump(InputAction.CallbackContext obj)
     {
+        Debug.Log("jump");
         if (IsGrounded())
         {
-            forceDirection += Vector3.up * classJump;
+           forceDirection += Vector3.up * classJump;
+            Debug.Log("dzi³a");
         }
     }
     private void LookAt()
@@ -78,11 +80,13 @@ public class PlayerMovement : MonoBehaviour
             this.rb.rotation = Quaternion.LookRotation(direction, Vector3.up);
         else
             rb.angularVelocity = Vector3.zero;
+
     }
 
     private bool IsGrounded()
     {
-        Ray ray = new Ray(this.transform.position + Vector3.up * 025f, Vector3.down);
+        //Debug.DrawRay();
+        Ray ray = new Ray(this.transform.position - (Vector3.up * 0.25f), Vector3.down);
         if (Physics.Raycast(ray, out RaycastHit hit, 0.3f))
             return true;
         else
