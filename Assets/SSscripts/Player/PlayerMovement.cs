@@ -63,12 +63,10 @@ public class PlayerMovement : MonoBehaviour
         Movemnt.Player.Move.Disable();
     } 
     private void DoJump(InputAction.CallbackContext obj)
-    {
-        Debug.Log("jump");
+    { 
         if (IsGrounded())
         {
            forceDirection += Vector3.up * classJump;
-            Debug.Log("dzi³a");
         }
     }
     private void LookAt()
@@ -85,9 +83,8 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsGrounded()
     {
-        //Debug.DrawRay();
         Ray ray = new Ray(this.transform.position - (Vector3.up * 0.25f), Vector3.down);
-        if (Physics.Raycast(ray, out RaycastHit hit, 0.3f))
+        if (Physics.Raycast(ray, out RaycastHit hit, 1f))
             return true;
         else
             return false;
