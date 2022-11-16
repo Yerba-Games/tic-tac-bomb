@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 horizontalVelocity = rb.velocity;
         horizontalVelocity.y = 0;
         if (horizontalVelocity.sqrMagnitude > classSpeed * classSpeed)
-            rb.velocity = horizontalVelocity.normalized * classSpeed + Vector3.up * rb.velocity.y;
+            rb.velocity = new Vector3(Mathf.Clamp(horizontalVelocity.x,0,1), Mathf.Clamp(horizontalVelocity.y, 0, 1), Mathf.Clamp(horizontalVelocity.z, 0, 1)) * classSpeed + Vector3.up * rb.velocity.y;
         LookAt();
     }
     private Vector3 GetCameraForward(Camera playerCamera)
